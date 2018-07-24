@@ -12,6 +12,10 @@ var Spotify = require("node-spotify-api");
 var Twitter = require('twitter');
 
 function findMovie(title) {
+    if (!title) {
+        title = "Mr. Nobody";
+        console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/\nIt's on Netflix!");
+    }
     var URL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
     request(URL, function(err, response, body) {
         if (err) {
@@ -20,10 +24,13 @@ function findMovie(title) {
         var data = JSON.parse(body);
         var logData = `Title: ${data.Title}\nYear: ${data.Year}\nIMDB Rating: ${data.imdbRating}\nRotten Tomatoes Rating: ${data.ratings}\nCountry: ${data.Country}\nLanguage: ${data.Language}\nPlot: ${data.Plot}\nActors: ${data.Actors}\n-----------`;
         console.log(logData);
-    })
+    });
 }
 
 function findSong(song) {
+    if (!song) {
+        song = "The Sign Ace of Base";
+    }
     var spotify = new Spotify(keys.spotify);
     spotify.search({ type: "track", query: song, limit: 1}, function(err, data) {
         if (err) {
@@ -42,12 +49,11 @@ function getTweets() {
         if (err) {
             return console.log("Error: " + err);
         }
-        for (var i=0; i < tweets.length; i ++) {
-            var tweets = `Tweet #(${i+1})\nTweet: ${tweets[i].text}\n`
+        for (var i=0; i < 20; i ++) {
+            var tweets = `Tweet #(${i+1})\nTweet: ${tweets[i].text}\nCreated: ${tweets[i].created_at}\n---------`
             console.log(tweets);
-        }
-        
-      });
+        }  
+    });
 }
 
 function doWhatItSays() {

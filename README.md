@@ -3,10 +3,10 @@ LIRI Node App: Language Interpretation and Recognition Interface
 This application is a command-line node app that takes in parameters and gives you back data. 
 
 There are 4 different commands LIRI can take in: 
-  1. movie-this
-  2. spotify-this-song
-  3. my-tweets
-  4. do-what-it-says
+  - movie-this
+  - spotify-this-song
+  - my-tweets
+  - do-what-it-says
   
 1. node liri.js movie-this '<movie title here>'
   This command line will take in any movie titles and give you back the follwing in your terminal/bash window
